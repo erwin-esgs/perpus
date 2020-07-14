@@ -40,6 +40,6 @@ if($_POST){
 		'ID_SISWA' => $_SESSION['id_user']
 	);
 	$database->update('tbl_anggota',$update,$where);
-	$config->redirectUrl('indexsiswa.php=siswa_info/index&sts=success');
+	$config->redirectUrl('indexsiswa.php?p=siswa_info/index&sts=success');
 }
 ?>

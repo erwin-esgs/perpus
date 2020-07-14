@@ -41,6 +41,10 @@
 		}
 	}
 	
+		if(isset($_GET['idbuku'])){
+		$cek = $database->query('DELETE FROM tbl_keranjangsewa WHERE ID_BUKU='.$_GET['idbuku'].' AND ID_TRANSAKSI='.$_SESSION['id_transaksi'], TRUE);
+	}
+	
 ?>
 <?php
 if($status_cart == 1):
@@ -71,7 +75,7 @@ if($status_cart == 1):
 				<td><?= $detail_buku->ISBN ?></td>
 				<td><?= $detail_buku->NM_BUKU ?></td>
 				<td><input type="hidden" name="qtyid<?= $a ?>" value="<?= $detail_buku->ID_BUKU ?>"/> <input min="1" type="number" name="qtyvalue<?= $a ?>" style="margin: 0" placeholder="" value="<?= $data_keranjang->QTY ?>"/></td>
-				<td><a href="" class="waves-effect waves-light btn btn-small red darken-1">Hapus</a></td>
+				<td><a href="<?= $config->baseUrl('indexsiswa.php?p=siswa_sewa/cart&idbuku='.$detail_buku->ID_BUKU) ?>" class="waves-effect waves-light btn btn-small red darken-1">Hapus</a></td>
 			</tr>
 			<?php $a++;endforeach; ?>
 			<?php else: ?>
@@ -128,7 +132,9 @@ if($status_cart == 1):
 		$data_insert = array(
 			"ID_TRANSAKSI" => $_SESSION['id_transaksi'],
 			"TGL_SEWA" => $utility->dateNow(),
+			"TGL_AMBIL" => $utility->dateNow(),
 			"WKT_SEWA" => $utility->timeNow(),
+			"TGL_KEMBALI" => date('Y-m-d', strtotime("+3 day")) ,
 			"ID_SISWA" => $_SESSION['id_user'],
 			"STS_CONFIRM" => 1
 		);

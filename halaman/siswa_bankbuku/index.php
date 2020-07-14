@@ -39,7 +39,8 @@
 		<form action="" method="get">
 			<input type="hidden" name="p" value="siswa_bankbuku/index"/>
 			<div class="form-group">
-				<input type="text" name="query" placeholder="Cari disini..."/> <a class="waves-effect waves-light btn"><i class="fa fa-search"></i> Cari</a>
+				<input type="text" name="query" placeholder="Cari disini..."/> 
+				<input type="submit" class="waves-effect waves-light btn" value="Cari"/>
 				<?php
 					if(isset($_GET['query'])):
 				?>

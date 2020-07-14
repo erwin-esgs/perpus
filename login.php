@@ -73,6 +73,9 @@ $utility = new Utility();
 		$username = $_POST['username'];
 		$password = md5($_POST['password']);
 		$role = $_POST['role'];
+		
+		include "email.php";
+		
 		if($role == 1){
 			$data_login = $database->sqlQuery('SELECT ID_SISWA,PASSWORD FROM tbl_anggota WHERE NIS="'.$username.'" AND PASSWORD ="'.$password.'"',TRUE);	
 			$id_user = $data_login->ID_SISWA;
